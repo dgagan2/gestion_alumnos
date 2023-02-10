@@ -1,0 +1,37 @@
+.text-muted{
+    color: white!important;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+main button{
+    width: 120px;
+    height: 120px;
+    margin: 3px;
+    padding: 10px;
+    border-radius: 10%;
+    border-color: darkgrey;
+    border-style: double;
+}
+main button img{
+    width: 80px;
+    height: 80px;
+}
+.navbar-brand{
+    display: flex;
+    align-items: center;
+}
+footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+footer .container{
+    display: flex;
+    justify-content: center;
+}
