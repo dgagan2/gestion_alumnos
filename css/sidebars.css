@@ -17,11 +17,9 @@ hr{
 main {
   display: flex;
   flex-wrap: nowrap;
-  height: 100vh;
   height: -webkit-fill-available;
-  max-height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
 }
 
 .b-example-divider {
@@ -45,3 +43,36 @@ main {
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
 
+form{
+  width: 500px;
+  height: 350px;
+}
+form input, select, label, span{
+  height: 30px;
+}
+.form-select, .form-label, input{
+  padding: 0px;
+  margin-bottom: 0px;
+}
+.container-person{
+  align-items: center;
+  display: flex;
+}
+@media(max-width:870px){
+ form, .container-person{
+  display: flex;
+  flex-direction: row-reverse;
+  flex:1;
+ }
+ .row{
+  padding: 0px;
+  width: 100%;
+ }
+ form{
+  margin: 0px;
+ }
+}
+@media(max-width:767px){
+  form, .container-person{
+    height: 100%;}
+}
