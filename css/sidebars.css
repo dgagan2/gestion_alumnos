@@ -44,8 +44,10 @@ main {
 .lh-tight { line-height: 1.25; }
 
 form{
-  width: 500px;
   height: 350px;
+  width: 100vh;
+  position: relative;
+  top: 30px;
 }
 form input, select, label, span{
   height: 30px;
@@ -54,10 +56,7 @@ form input, select, label, span{
   padding: 0px;
   margin-bottom: 0px;
 }
-.container-person{
-  align-items: center;
-  display: flex;
-}
+
 @media(max-width:870px){
  form, .container-person{
   display: flex;

@@ -24,54 +24,67 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link text-white" aria-current="page">
-              Crear Personas
-            </a>
+            <button id="btnCreateStudent" class="nav-link text-white" aria-current="page">
+              Crear Alumno
+              <script>
+                document.querySelector("#btnCreateStudent").addEventListener("click", function(){
+                let ocultarS=document.querySelector("#person")
+                ocultarS.style="display:flex"})
+              </script>
+            </button>
           </li>
           <li>
-            <a href="#" class="nav-link text-white">
-              Listado de Personas
-            </a>
+            <button id="btnListStudent" class="nav-link text-white">Listado de Alumnos</button>           
+              <script>
+                document.querySelector("#btnListStudent").addEventListener("click", function(){
+                let ocultarS=document.querySelector("#person")
+                ocultarS.style="display:none"})
+              </script>
           </li>
         </ul>
-        
       </div>
       
       <div class="b-example-divider"></div>
 
-      <div class="container-person">
-        <form class="row g-3 needs-validation" novalidate>
+      <div class="container-person" id="person">
+        <form class="row g-3 needs-validation">
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+            <label  class="form-label">Numero de Documento</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+          </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label  class="form-label">Primer Nombre</label>
-            <input type="text" class="form-control"  required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label  class="form-label">Segundo Nombre</label>
-            <input type="text" class="form-control"   required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label  class="form-label">Primer Apellido</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label class="form-label">Segundo Apellido</label>
-            <input type="text" class="form-control"  required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
             <label class="form-label">Edad</label>
-            <input type="number" class="form-control"  required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
-            <label  class="form-label">Genero</label>
-            <select class="form-select"  required>
+            <label  class="form-label">Sexo</label>
+            <select class="form-select">
               <option selected disabled value="">Selecione</option>
               <option>M</option>
               <option>F</option>
             </select>
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
-            <label  class="form-label">Sangre</label>
-            <select class="form-select"  required>
+            <label  class="form-label">Tipo de Sangre</label>
+            <select class="form-select">
               <option selected disabled value="">Selecione</option>
               <option>O+</option>
               <option>O-</option>
@@ -79,13 +92,13 @@
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label class="form-label">Ciudad</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control">
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
             <label class="form-label">Correo</label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="inputGroupPrepend">@</span>
-              <input type="text" class="form-control" aria-describedby="inputGroupPrepend" required>
+              <input type="text" class="form-control" aria-describedby="inputGroupPrepend">
             </div>
           </div>
           <div class="col-12">
@@ -94,6 +107,10 @@
         </form>
       </div>
       
+      <div class="List_person" id="List_person">
+
+      </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
