@@ -48,3 +48,13 @@ form, .alumnos{
     position: relative;
     top: 30px;
 }
+.List_person{
+    display: none;
+    flex-direction: column;
+    width: 75%;
+  }
+  .List_person .row{
+    width: 50%;
+    position: relative;
+    top: 30px;
+  }

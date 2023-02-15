@@ -83,7 +83,9 @@ table{
   top: 50px;
 }
 .List_person{
-  width: 110vh;
   display: none;
   flex-direction: column;
+}
+.List_person .row{
+  width: 60%s;
 }
