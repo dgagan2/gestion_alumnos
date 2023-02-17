@@ -15,7 +15,7 @@
   <body>
 
     <main>
-
+      <!--Menu lateral-->
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="col" style="width: 310px;">
         <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-white text-decoration-none">
           <img src="../img/home.png" style="margin-right:7px;" width="30" height="24" alt="Home">
@@ -23,27 +23,24 @@
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li>
-            <button class="nav-link text-white" id="btnPAlumno">
-              Promedio Alumno
-            </button>
+          <li >
+            <button class="nav-link text-white" aria-current="page">Materias Inscritas</button>
           </li>
           <li>
-            <button class="nav-link text-white" id="btnPGrupo">
-              Promedio Grupo
+            <button class="nav-link text-white" id="btnPAlumno">
+              Promedios
             </button>
           </li>
           <li>
             <button class="nav-link text-white" p="btnLEstudiantes">
-              Listado Estudiantes
+              Listados
             </button>
           </li>
         </ul>
-        
       </div>
-      
       <div class="b-example-divider"></div>
       <section>
+        <!--Tabla de alumnos-->
         <div class="container-prom-alumno">
           <form class="row g-3 needs-validation">
             <div class="col-12">
@@ -58,10 +55,10 @@
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Primer Nombre</th>
-                <th scope="col">Segundo Nombre</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">Segundo Apellido</th>
+                <th scope="col">Nombre</th>>
+                <th scope="col">Grupo</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Calificacion</th>
                 <th scope="col">Promedio</th>
               </tr>
             </thead>
@@ -76,15 +73,13 @@
             </tbody>
           </table>
         </div>
+        <!--Tabla de grupos-->
         <div class="container-prom-grupo">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Primer Nombre</th>
-                <th scope="col">Segundo Nombre</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">Segundo Apellido</th>
+                <th scope="col">Grupo</th>
+                <th scope="col">Materia</th>
                 <th scope="col">Promedio</th>
               </tr>
             </thead>
@@ -98,8 +93,21 @@
             </tbody>
           </table>
         </div>
-        <div class="container-personas">
-  
+        <!--Tabla materias-->
+        <div class="materias">
+          <!---->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Materias</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
       

@@ -14,7 +14,8 @@ hr{
     opacity: 0.25;
 }
 label{
-    width: 50vh;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 main {
     display: flex;
@@ -43,7 +44,7 @@ main {
 
 .lh-tight { line-height: 1.25; }  
 
-form, .alumnos{
+form{
     width: 70%;
     position: relative;
     top: 30px;
