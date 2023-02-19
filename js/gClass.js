@@ -1,13 +1,29 @@
-document.querySelector("#btnCreateClass").addEventListener("click", function(){
-    sections("", ".createClass")
+$(function(){
+    $('.createGroup').hide();
+    $('.enrollClass').hide();
+    $('.addClassGroup').hide();
+    $('#btnCreateGroup').click(function(){
+        $('.createGroup').show();
+        $('.createClass').hide();
+        $('.enrollClass').hide();
+        $('.addClassGroup').hide();
+    })
+    $('#btnCreateClass').click(function(){
+        $('.createGroup').hide();
+        $('.createClass').show();
+        $('.enrollClass').hide();
+        $('.addClassGroup').hide();
+    })
+    $('#btnEnrollClass').click(function(){
+        $('.createGroup').hide();
+        $('.createClass').hide();
+        $('.enrollClass').show();
+        $('.addClassGroup').hide();
+    })
+    $('#btnClassGroup').click(function(){
+        $('.createGroup').hide();
+        $('.createClass').hide();
+        $('.enrollClass').hide();
+        $('.addClassGroup').show();
+    })
 })
-
-document.querySelector("#btnListStudent").addEventListener("click", function(){
-    sections("", "")
-})
- function sections(ocultar, mostrar){
-    let ocultarS=document.querySelector(ocultar)
-    ocultarS.style="display:none"
-    let MostraS=document.querySelector(mostrar)
-    MostraS.style="display:flex"
- }

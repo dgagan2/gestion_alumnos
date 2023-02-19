@@ -38,20 +38,32 @@ main {
 .scrollarea {
     overflow-y: auto;
 }
-
 .fw-semibold { font-weight: 600; }
 
 .lh-tight { line-height: 1.25; }  
-.container-prom-grupo,.container-personas,.container-prom-alumno{
+.container-prom-grupo,.container-personas{
     width: 70%;
-}
-form{
-    position: relative;
-    top: 30px;
 }
 section{
     display: flex;
     flex-direction: column;
-    width: 70%;
     height: 95vh;
+    width: auto;
+}
+#selTypeProm{
+    margin: 30px 0px 15px 0px;
+}
+.form-select{
+    width: auto;
+}
+.materias{
+    width: 80vh;
+}
+.materias table{
+    position: relative;
+    top: 40px;
+    left: 90px;
+}
+th,td{
+    text-align: center;
 }

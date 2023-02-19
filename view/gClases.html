@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../js/jquery-3.6.3.js"></script>
     <!-- Custom styles for this template -->
     <link href="../css/gClases.css" rel="stylesheet">
 
@@ -23,12 +24,10 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#createClass" class="nav-link text-white" id="btnCreateClass" aria-current="page">Crear Materia</a>
-            <!-- <button class="nav-link text-white" id="btnCreateClass" aria-current="page">Crear Materia</button> -->
+            <button class="nav-link text-white" id="btnCreateClass" aria-current="page">Crear Materia</button>
           </li>
           <li>
-            <a href="#createGroup" class="nav-link text-white" id="btnCreateClass" aria-current="page">Crear Grupo</a>
-            <!-- <button class="nav-link text-white" id="btnCreateGroup" aria-current="page">Crear Grupo</button> -->
+            <button class="nav-link text-white" id="btnCreateGroup" aria-current="page">Crear Grupo</button>
           </li>
           <li>
             <button class="nav-link text-white" id="btnEnrollClass" aria-current="page">Inscribir Materias</button>
@@ -39,25 +38,6 @@
         </ul>
       </div>
       <div class="b-example-divider"></div>
-
-
-      <script type="text/javascript">
-      
-        </script>
-      <!-- <div class="List_person" id="List_person">
-        
-        <section class="row g-2 needs-validation" style="flex-direction: column">
-          <div class="col-md-6">
-            <label class="form-label">Ingrese ID</label>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" id="">
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" id="" type="submit">Buscar</button>
-          </div>
-        </section>
-      </div> -->
       <section class="createClass">
         <form class="row g-3 needs-validation">
           <div class="col-6 col-xs-12 col-sm-12">
@@ -70,7 +50,7 @@
         </form>
       </section>
       <section class="createGroup">
-        <form lass="row g-3 needs-validation">
+        <form class="row g-3 needs-validation">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Grupo</label>
             <input type="text" for="form-control">
@@ -80,7 +60,60 @@
           </div>
         </form>
       </section>
-      
+      <section class="enrollClass">
+        <form class="row g-3 needs-validation">
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Estudiante</label>
+            <select class="form-select">
+              <option selected disabled value="">Selecione</option>
+              <option>Juan</option>
+              <option>David</option>
+            </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Nombre Grupo</label>
+            <select class="form-select">
+              <option selected disabled value="">Selecione</option>
+              <option>ere</option>
+              <option>asas</option>
+            </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Nombre Materia</label>
+            <select class="form-select">
+              <option selected disabled value="">Selecione</option>
+              <option>Mate</option>
+              <option>Sociales</option>
+            </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <button class="btn btn-primary" type="submit">Inscribir</button>
+          </div>
+        </form>>
+      </section>
+      <section class="addClassGroup">
+        <form class="row g-3 needs-validation">
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Grupo</label>
+            <select class="form-select">
+              <option selected disabled value="">Selecione</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Materia</label>
+            <select class="form-select">
+              <option selected disabled value="">Selecione</option>
+              <option>Mate</option>
+              <option>Sociales</option>
+            </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <button class="btn btn-primary" type="submit">Inscribir</button>
+          </div>
+        </form>>
+      </section>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
