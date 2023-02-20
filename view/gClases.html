@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/jquery-3.6.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="../css/gClases.css" rel="stylesheet">
 
@@ -17,7 +18,7 @@
     <main>
       <!--Menu Lateral-->
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 310px;">
-        <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-white text-decoration-none">
+        <a href="../index.html" id="home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-white text-decoration-none">
           <img src="../img/home.png" style="margin-right:7px;" width="30" height="24" alt="Home">
           <span class="fs-4">Plataforma Academica</span>
         </a>
@@ -39,24 +40,24 @@
       </div>
       <div class="b-example-divider"></div>
       <section class="createClass">
-        <form class="row g-3 needs-validation">
+        <form class="row g-3 needs-validation" id="formMateria">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Materia</label>
-            <input type="text" for="form-control">
+            <input type="text" id="txtClass" for="form-control">
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
-            <button class="btn btn-primary" type="submit">Agregar Materia</button>
+            <button class="btn btn-primary" type="submit" id="addClass">Agregar Materia</button>
           </div>
         </form>
       </section>
       <section class="createGroup">
-        <form class="row g-3 needs-validation">
+        <form class="row g-3 needs-validation" id="">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Grupo</label>
             <input type="text" for="form-control">
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
-            <button class="btn btn-primary" type="submit">Agregar Grupo</button>
+            <button class="btn btn-primary" type="submit" id="addGroup">Agregar Grupo</button>
           </div>
         </form>
       </section>

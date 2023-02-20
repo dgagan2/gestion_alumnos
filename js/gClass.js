@@ -27,3 +27,32 @@ $(function(){
         $('.addClassGroup').show();
     })
 })
+const form=document.querySelector("#formMateria").addEventListener("submit", function(event){
+    event.preventDefault();
+    let transform=new FormData(form)
+    document.getElementById('formMateria').reset();
+})
+const clas=[]
+
+var a=localStorage.getItem("arrayClass")
+let myarraytemp=JSON.parse(a)
+Array.prototype.push.apply(clas,myarraytemp)
+document.querySelector("#addClass").addEventListener("click",function(){
+    let clase=document.querySelector("#txtClass").value
+    class addClass{
+        constructor(materia){
+            this.materia=clase
+        }
+        addMaterias(clase){
+            clas.push(this.materia)
+            const jsonArray = JSON.stringify(clas);
+            localStorage.setItem('arrayClass', jsonArray);
+        }
+    }
+    let i=new addClass(clase)
+    i.addMaterias()
+});
+document.querySelector("#home").addEventListener("click", function(){
+    let myarraytemp=JSON.parse(localStorage.getItem("arrayClass"))
+    clas.push(myarraytemp)
+});

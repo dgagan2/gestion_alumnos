@@ -10,12 +10,10 @@ document.querySelector("#btnListStudent").addEventListener("click", function(){
     let MostraS=document.querySelector("#List_person")
     MostraS.style="display: flex"
 })
-
 const student=[]
 //Guardar info local storage
 let myarraytem=JSON.parse(localStorage.getItem("array"))
-student.push(myarraytem)
-student.shift(student)
+Array.prototype.push.apply(student,myarraytem)
 //Obtener valores select Sexo
 let Sexo
 function getSex(){
@@ -58,36 +56,34 @@ document.querySelector("#btnAddPerson").addEventListener("click", function(){
                 const jsonArray = JSON.stringify(student);
                 localStorage.setItem('array', jsonArray);
                 //const str = localStorage.getItem('array');
-                //const parsedArray = JSON.parse(str);
-                
+                //const parsedArray = JSON.parse(str);                
             }
         }
     let p=new person(ID,Nombre,Edad,Sexo1,TS1,Ciudad,Correo)
     p.addPerson()
-    //p.listStudent()
 } 
 })
+var r=[]
 document.querySelector("#btnFind").addEventListener("click", function(){
-    alert("alerta")
-    const a = localStorage.getItem('array');
-    const parsedArr = JSON.parse(a);
-    student.push(parsedArr)
-    for(var j=0;j<student.length;j++){
-        alert("paso1")
-        document.querySelector("#tablePerson").innerHTML +=
-         `
-        <tr id="tablePerson-${student.ID}">
-            <td>${student.ID}</td>
-            <td>${student.Nombre}</td>
-            <td>${this.Edad}</td>
-            <td>${this.Sexo1}</td>
-            <td>${this.BloodType}</td>
-            <td>${this.City}</td>
-            <td>${this.Mail}</td>
+let myar=JSON.parse(localStorage.getItem("array"))
+Array.prototype.push.apply(r,myar)    
+for(var j=0;j<student.length;j++){
+    var constemp=r[j]
+    //console.log(constemp)
+    document.querySelector("#tablePerson").innerHTML +=
+    `
+    <tbody id="tablePerson">
+        <tr>
+        <td>${r[j].ID}</td>
+        <td>${constemp.Name}</td>
+        <td>${constemp.Age}</td>
+        <td>${r[j].Sex}</td>
+        <td>${r[j].BloodType}</td>
+        <td>${r[j].City}</td>
+        <td>${r[j].Mail}</td>
         </tr>
-        `
-    } 
-    //person.listStudent(student)
+    </tbody>
+    `} 
 })
 
 
