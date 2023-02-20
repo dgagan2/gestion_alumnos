@@ -39,7 +39,10 @@ main {
 .scrollarea {
   overflow-y: auto;
 }
-
+.row{
+  position: relative;
+  top: 40px;
+}
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
 

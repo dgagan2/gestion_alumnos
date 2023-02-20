@@ -27,13 +27,12 @@ $(function(){
         $('.addClassGroup').show();
     })
 })
-const form=document.querySelector("#formMateria").addEventListener("submit", function(event){
+const form=document.querySelector('#formMateria').addEventListener("submit", function(event){
     event.preventDefault();
     let transform=new FormData(form)
     document.getElementById('formMateria').reset();
 })
 const clas=[]
-
 var a=localStorage.getItem("arrayClass")
 let myarraytemp=JSON.parse(a)
 Array.prototype.push.apply(clas,myarraytemp)
@@ -53,6 +52,31 @@ document.querySelector("#addClass").addEventListener("click",function(){
     i.addMaterias()
 });
 document.querySelector("#home").addEventListener("click", function(){
-    let myarraytemp=JSON.parse(localStorage.getItem("arrayClass"))
-    clas.push(myarraytemp)
+    var a=localStorage.getItem("arrayClass")
+    let myarraytemp=JSON.parse(a)
+    Array.prototype.push.apply(clas,myarraytemp)
+});
+//Modulo crear Grupo
+const form1=document.querySelector('#formGroup').addEventListener("submit", function(event){
+    event.preventDefault();
+    let transform=new FormData(form)
+    document.getElementById('formGroup').reset();
+})
+const group=[]
+var tempLoc=JSON.parse(localStorage.getItem("arrayGroup"))
+Array.prototype.push.apply(group,tempLoc)
+document.querySelector("#addGroup").addEventListener("click",function(){
+    let grupo=document.querySelector("#txtGrupo").value
+    class Group{
+        constructor(grupo){
+            this.grupo=grupo
+        }
+        addGroup(grupo){
+            group.push(this.grupo)
+            const jsonArray = JSON.stringify(group);
+            localStorage.setItem('arrayGroup', jsonArray);
+        }
+    }
+    let j=new Group(grupo)
+    j.addGroup()
 });

@@ -35,7 +35,7 @@
       <div class="b-example-divider"></div>
 
       <div class="container-person" id="person">
-        <section class="row g-3 needs-validation">
+        <form class="row g-3 needs-validation" id="formPers">
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
             <label for="txtNDocumnet" class="form-label">Numero de Documento</label>
             <input id="txtNDocumnet" type="text" class="form-control" required/>
@@ -81,20 +81,20 @@
           <div class="col-12">
             <button class="btn btn-primary" id="btnAddPerson" type="submit">Agregar Alumno</button>
           </div>
-        </section>
+        </form>
       </div>
       <div class="List_person" id="List_person">
-          <section class="row g-2 needs-validation" style="flex-direction: column">
+          <form class="row g-2 needs-validation" id="formFindID"style="flex-direction: column">
             <div class="col-md-6">
-              <label for="txtId" class="form-label">Ingrese ID</label>
+              <label for="txtIdFind" class="form-label">Ingrese ID</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" id="txtId">
+              <input type="text" class="form-control" id="txtIdFind">
             </div>
             <div class="col-12">
               <button class="btn btn-primary" id="btnFind" type="submit">Buscar</button>
             </div>
-          </section>
+          </form>
         <table class="table table-striped">
           <thead>
             <tr>
