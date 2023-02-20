@@ -1,21 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="../css/sidebars.css" rel="stylesheet">
 
   </head>
 
   <body>
-
     <main>
-
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 340px;">
         <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-white text-decoration-none">
           <img src="../img/home.png" style="margin-right:7px;" width="30" height="24" alt="Home">
@@ -37,88 +35,71 @@
       <div class="b-example-divider"></div>
 
       <div class="container-person" id="person">
-        <form class="row g-3 needs-validation">
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label  class="form-label">Numero de Documento</label>
-            <input type="text" class="form-control">
+        <section class="row g-3 needs-validation">
+          <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
+            <label for="txtNDocumnet" class="form-label">Numero de Documento</label>
+            <input id="txtNDocumnet" type="text" class="form-control" required/>
           </div>
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-          </div>
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label  class="form-label">Primer Nombre</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label  class="form-label">Segundo Nombre</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label  class="form-label">Primer Apellido</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label class="form-label">Segundo Apellido</label>
-            <input type="text" class="form-control">
+          <div class="col-8 col-sm-12 col-xs-12 col-lg-8">
+            <label for="txtName" class="form-label">Nombre Completo</label>
+            <input id="txtName" type="text" class="form-control" required/>
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
-            <label class="form-label">Edad</label>
-            <input type="text" class="form-control">
+            <label for="txtAge" class="form-label">Edad</label>
+            <input id="txtAge" type="text" class="form-control">
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
-            <label  class="form-label">Sexo</label>
-            <select class="form-select">
+            <label  for="sex" class="form-label">Sexo</label>
+            <select id="sex" class="form-select" onchange="getSex()">
               <option selected disabled value="">Selecione</option>
-              <option>M</option>
-              <option>F</option>
+              <option value="M">M</option>
+              <option value="F">F</option>
+              <option value="No Binario">No Binario</option>
             </select>
           </div>
           <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4">
-            <label  class="form-label">Grupo Sanguineo RH</label>
-            <select class="form-select">
+            <label for="bloodType" class="form-label">Grupo Sanguineo RH</label>
+            <select id="bloodType" class="form-select" onchange="getGS()">
               <option selected disabled value="">Selecione</option>
-              <option>O+</option>
-              <option>O-</option>
+              <option value="O+">O+</option>
+              <option value="0-">O-</option>
+              <option value="A+">A+</option>
+              <option value="B-">B-</option>
             </select>
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label class="form-label">Ciudad Residencia</label>
-            <input type="text" class="form-control">
+            <label for="txtCity" class="form-label">Ciudad Residencia</label>
+            <input id="txtCity" type="text" class="form-control">
           </div>
           <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <label class="form-label">Correo</label>
+            <label for="txtMail" class="form-label">Correo</label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="inputGroupPrepend">@</span>
-              <input type="text" class="form-control" aria-describedby="inputGroupPrepend">
+              <input id="txtMail" type="text" class="form-control" aria-describedby="inputGroupPrepend">
             </div>
           </div>
           <div class="col-12">
-            <button class="btn btn-primary" id="btnAddP" type="submit">Agregar Alumno</button>
+            <button class="btn btn-primary" id="btnAddPerson" type="submit">Agregar Alumno</button>
           </div>
-        </form>
+        </section>
       </div>
-      
       <div class="List_person" id="List_person">
-        
           <section class="row g-2 needs-validation" style="flex-direction: column">
             <div class="col-md-6">
-              <label class="form-label">Ingrese ID</label>
+              <label for="txtId" class="form-label">Ingrese ID</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" id="">
+              <input type="text" class="form-control" id="txtId">
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" id="" type="submit">Buscar</button>
+              <button class="btn btn-primary" id="btnFind" type="submit">Buscar</button>
             </div>
           </section>
-       
         <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Primer Nombre</th>
-              <th scope="col">Segundo Nombre</th>
-              <th scope="col">Primer Apellido</th>
-              <th scope="col">Segundo Apellido</th>
+              <th scope="col">Nombre</th>
               <th scope="col">Edad</th>
               <th scope="col">Sexo</th>
               <th scope="col">GP RH</th>
@@ -127,17 +108,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            <tr id="tablePerson">
             </tr>
-            
           </tbody>
-        </table> 
-
-       
+        </table>
       </div>
 
     </main>
