@@ -65,53 +65,43 @@
         <form class="row g-3 needs-validation">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Estudiante</label>
-            <select class="form-select">
+            <select class="form-select" id="cmbStudent" onclick="getStudent()">
               <option selected disabled value="">Selecione</option>
-              <option>Juan</option>
-              <option>David</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Grupo</label>
-            <select class="form-select">
+            <select class="form-select" id="cmbGroup" onclick="getGroup()">
               <option selected disabled value="">Selecione</option>
-              <option>ere</option>
-              <option>asas</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Materia</label>
-            <select class="form-select">
-              <option selected disabled value="">Selecione</option>
-              <option>Mate</option>
-              <option>Sociales</option>
+            <select class="form-select" onclick="" id="cmbClass" >
+              <option selected disabled value="" >Selecione</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
-            <button class="btn btn-primary" type="submit">Inscribir</button>
+            <button class="btn btn-primary" type="submit" id="btnAddMate">Inscribir</button>
           </div>
         </form>>
       </section>
       <section class="addClassGroup">
-        <form class="row g-3 needs-validation">
+        <form class="row g-3 needs-validation" id="fomraddClassGroup">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Grupo</label>
-            <select class="form-select">
+            <select class="form-select" id="cmbGroupAssig" onclick="getGroup1()">
               <option selected disabled value="">Selecione</option>
-              <option>1</option>
-              <option>2</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Materia</label>
-            <select class="form-select">
+            <select class="form-select" id="cmbClassAssig" onclick="getClas1()">
               <option selected disabled value="">Selecione</option>
-              <option>Mate</option>
-              <option>Sociales</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
-            <button class="btn btn-primary" type="submit">Inscribir</button>
+            <button class="btn btn-primary" type="submit" id="btnAddClasstoGroup">Inscribir</button>
           </div>
         </form>>
       </section>

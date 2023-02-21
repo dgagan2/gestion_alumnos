@@ -74,7 +74,6 @@ document.querySelector("#btnFind").addEventListener("click", function(){
     if(IdF==""){
         for(var j=0;j<r.length;j++){
             var constemp=r[j]
-            //console.log(constemp)
             document.querySelector("#tablePerson").innerHTML +=
             `
             <tbody id="tablePerson">
