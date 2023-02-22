@@ -31,12 +31,13 @@ let arrStudent=[]//arreglo estdudiantes
 const clas=[]//Arreglo de las materias
 const group=[]//arreglo de los grupos
 const assclasstogroup=[]//arreglo de asignacion de materias a grupos
+const cursosMatr=[]//arreglo cursos matriculados
 const form=document.querySelector('#formMateria').addEventListener("submit", function(event){
     event.preventDefault();
     let transform=new FormData(form)
     document.getElementById('formMateria').reset();
-   
 })
+
 function formulario(nform){
     const form=document.querySelector(nform).addEventListener("submit", function(event){
         event.preventDefault();
@@ -44,14 +45,16 @@ function formulario(nform){
         document.querySelector(nform).reset();
     })
 }
-//Modulo crear Clase
-var a=localStorage.getItem("arrayClass")
-let myarraytemp=JSON.parse(a)
+
+var myarraytemp=JSON.parse(localStorage.getItem("arrayClass"))
 Array.prototype.push.apply(clas,myarraytemp)
-//
+
 var b=JSON.parse(localStorage.getItem("arrayclasstogroup"))
 Array.prototype.push.apply(assclasstogroup,b)
 
+var tempLoc=JSON.parse(localStorage.getItem("arrayGroup"))
+Array.prototype.push.apply(group,tempLoc)
+//Modulo crear Clase
 document.querySelector("#addClass").addEventListener("click",function(){
     let clase=document.querySelector("#txtClass").value
     class addClass{
@@ -67,21 +70,17 @@ document.querySelector("#addClass").addEventListener("click",function(){
     let i=new addClass(clase)
     i.addMaterias()
 });
-document.querySelector("#home").addEventListener("click", function(){
-    var a=localStorage.getItem("arrayClass")
-    let myarraytemp=JSON.parse(a)
-    Array.prototype.push.apply(clas,myarraytemp)
-});
+
 //Modulo crear Grupo
 const form1=document.querySelector('#formGroup').addEventListener("submit", function(event){
     event.preventDefault();
     let transform=new FormData(form)
     document.getElementById('formGroup').reset();
 })
+//formulario("formGroup")
 
-var tempLoc=JSON.parse(localStorage.getItem("arrayGroup"))
-Array.prototype.push.apply(group,tempLoc)
 document.querySelector("#addGroup").addEventListener("click",function(){
+    
     let grupo=document.querySelector("#txtGrupo").value
     class Group{
         constructor(grupo){
@@ -95,17 +94,32 @@ document.querySelector("#addGroup").addEventListener("click",function(){
     }
     let j=new Group(grupo)
     j.addGroup()
+    
 });
 //Modulo Inscribir materias
 
-    let atemp=JSON.parse(localStorage.getItem("array"))
-    Array.prototype.push.apply(arrStudent,atemp)
+let atemp=JSON.parse(localStorage.getItem("array"))
+Array.prototype.push.apply(arrStudent,atemp)
 
+function limpiar(objclear){
+    for (let i = ("#"+objclear).length; i >= 0; i--) {
+        document.getElementById(objclear).remove(i);
+    }
+}
+document.querySelector("#cmbStudent").addEventListener("change", function(){
+    d=document.getElementById("lblname")
+    if(!d){
+
+    }else{nodo=d.parentNode
+        nodo.removeChild(d)}      
+})
 document.querySelector("#btnEnrollClass").addEventListener("click", function(event){
+    limpiar("cmbGroup")
+    limpiar("cmbClass")
     for(var j=0;j<arrStudent.length;j++){
         document.querySelector("#cmbStudent").innerHTML +=
         `
-        <option value="${arrStudent[j].Name}">${arrStudent[j].Name}</option>
+        <option value="${arrStudent[j].ID}">${arrStudent[j].ID}</option>
         `
     } 
     for(var i=0;i<group.length;i++){
@@ -115,16 +129,19 @@ document.querySelector("#btnEnrollClass").addEventListener("click", function(eve
         `
     }
 })
-let selectGroup
-function getGroup(){
-    selectGroup=document.querySelector("#cmbGroup").value
-    return selectGroup;
-}
+
 document.querySelector("#cmbGroup").addEventListener("change", function(){
-    for (let i = ("#cmbClass").length; i >= 0; i--) {
-        document.getElementById("cmbClass").remove(i);
-    }
     let selectGrou=document.querySelector("#cmbGroup").value
+    let estudiante=selectIDStudent
+    for(var h=0;h<arrStudent.length;h++){
+        if(estudiante==arrStudent[h].ID){
+            document.querySelector("#namestudent").innerHTML +=
+            `
+            <b>Nombre Estudiante</b><br>
+            <p id="lblname" name="${arrStudent[h].Name}">${arrStudent[h].Name}</p>
+            `
+        }
+    }  
     for(var h=0;h<assclasstogroup.length;h++){
         if(selectGrou==assclasstogroup[h].Grupo){
             document.querySelector("#cmbClass").innerHTML +=
@@ -134,36 +151,48 @@ document.querySelector("#cmbGroup").addEventListener("change", function(){
         }
     }      
 })
-let selectClass
-function getClas(){
-    selectClass=document.querySelector("#cmbClass").value
-    return selectClass;
-}
 
-let selectStudent
+let selectIDStudent
 function getStudent(){
-    selectStudent=document.querySelector("#cmbStudent").value
-    return selectStudent;
+    selectIDStudent=document.querySelector("#cmbStudent").value
+    return selectIDStudent;
 }
-const cursosMatr=[]
-document.querySelector("#btnAddMate").addEventListener("click", function(){
-    let estudiante=selectStudent
-    let clase=selectClass
-    let grupo=selectGroup
-    class inscribircurso{
-        constructor(estudiante, grupo,clase){
-            this.estudiante=estudiante
-            this.grupo=grupo
-            this.clase=clase
-        }
-        matricularcursos(estudiante,grupo,clase){
-            
-        }
-    }let inscur=new inscribircurso(estudiante, grupo, clase)
 
+document.querySelector("#cmbClass").addEventListener("change", function (){
+    document.querySelector("#cmbClass").value
+})
+document.querySelector("#cmbGroup").addEventListener("change", function (){
+     document.querySelector("#cmbGroup").value
+})
+
+document.querySelector("#btnAddMate").addEventListener("click", function(){
+    let NombreEstud=document.querySelector("#lblname").innerHTML
+    let IDestudiante=selectIDStudent
+    limpiar("cmbClass")
+    let clase=document.querySelector("#cmbClass").value
+    let grupo=document.querySelector("#cmbGroup").value
+    class inscribircurso{
+        constructor(NombreEstud, IDestudiante, clase, grupo){
+            this.NombreEstud=NombreEstud
+            this.IDestudiante=IDestudiante
+            this.clase=clase
+            this.grupo=grupo
+        }
+        matricularcursos(NombreEstud, IDestudiante, clase,grupo){
+            cursosMatr.push({
+                NDocumento:this.IDestudiante, Estudiante:this.NombreEstud, Clase:this.clase, Grupo:this.grupo
+            })
+            const jsonArray = JSON.stringify(cursosMatr);
+            localStorage.setItem('arraycursosmatriculados', jsonArray); 
+        }
+    }let inscur=new inscribircurso(NombreEstud, IDestudiante, clase,grupo)
+    inscur.matricularcursos()
+    formulario("#formEnrollClass")
 })
 //Asignar materias a grupo
 document.querySelector("#btnClassGroup").addEventListener("click",function(){
+    limpiar("cmbGroupAssig")
+    limpiar("cmbClassAssig")
     for(var i=0;i<group.length;i++){
         document.querySelector("#cmbGroupAssig").innerHTML +=
         `
@@ -177,17 +206,16 @@ document.querySelector("#btnClassGroup").addEventListener("click",function(){
         `
     }
 })
-function getClas1(){
-    selectClass=document.querySelector("#cmbClassAssig").value
-    return selectClass;
-}
-function getGroup1(){
-    selectGroup=document.querySelector("#cmbGroupAssig").value
-    return selectGroup;
-}
+
+document.querySelector("#cmbGroupAssig").addEventListener("change", function (){
+    document.querySelector("#cmbGroupAssig").value
+})
+document.querySelector("#cmbClassAssig").addEventListener("change", function (){
+     document.querySelector("#cmbClassAssig").value
+})
 document.querySelector("#btnAddClasstoGroup").addEventListener("click",function(){
-    let clase=selectClass
-    let grupo=selectGroup
+    let clase=document.querySelector("#cmbClassAssig").value
+    let grupo=document.querySelector("#cmbGroupAssig").value
     class classtogroup{
         constructor(grupo,clase){
             this.grupo=grupo

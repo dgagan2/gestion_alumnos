@@ -13,7 +13,7 @@ document.querySelector("#btnListStudent").addEventListener("click", function(){
 const form=document.querySelector("#formFindID").addEventListener("submit", function(event){
     event.preventDefault();
     let transform=new FormData(form)
-    document.getElementById('#formPers').reset();
+    document.getElementById('formPers').reset();
 })
 const student=[]
 //Guardar info local storage

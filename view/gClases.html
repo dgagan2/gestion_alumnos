@@ -62,23 +62,25 @@
         </form>
       </section>
       <section class="enrollClass">
-        <form class="row g-3 needs-validation">
+        <form class="row g-3 needs-validation" id="formEnrollClass">
           <div class="col-6 col-xs-12 col-sm-12">
-            <label for="form-label">Estudiante</label>
+            <label for="form-label">N Documento Estudiante</label>
             <select class="form-select" id="cmbStudent" onclick="getStudent()">
-              <option selected disabled value="">Selecione</option>
+              <option value="select">Selecione</option>
             </select>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12" id="namestudent">
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Grupo</label>
-            <select class="form-select" id="cmbGroup" onclick="getGroup()">
+            <select class="form-select" id="cmbGroup">
               <option selected disabled value="">Selecione</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Materia</label>
-            <select class="form-select" onclick="" id="cmbClass" >
-              <option selected disabled value="" >Selecione</option>
+            <select class="form-select" onclick="" id="cmbClass">
+              <option selected disabled value="">Selecione</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
@@ -90,13 +92,13 @@
         <form class="row g-3 needs-validation" id="fomraddClassGroup">
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Grupo</label>
-            <select class="form-select" id="cmbGroupAssig" onclick="getGroup1()">
+            <select class="form-select" id="cmbGroupAssig">
               <option selected disabled value="">Selecione</option>
             </select>
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Materia</label>
-            <select class="form-select" id="cmbClassAssig" onclick="getClas1()">
+            <select class="form-select" id="cmbClassAssig">
               <option selected disabled value="">Selecione</option>
             </select>
           </div>
