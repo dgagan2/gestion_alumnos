@@ -2,36 +2,51 @@ $(function(){
     $('.createGroup').hide();
     $('.enrollClass').hide();
     $('.addClassGroup').hide();
+    $('.addNota').hide();
+    
     $('#btnCreateGroup').click(function(){
         $('.createGroup').show();
         $('.createClass').hide();
         $('.enrollClass').hide();
         $('.addClassGroup').hide();
+        $('.addNota').hide();
     })
     $('#btnCreateClass').click(function(){
         $('.createGroup').hide();
         $('.createClass').show();
         $('.enrollClass').hide();
         $('.addClassGroup').hide();
+        $('.addNota').hide();
     })
     $('#btnEnrollClass').click(function(){
         $('.createGroup').hide();
         $('.createClass').hide();
         $('.enrollClass').show();
         $('.addClassGroup').hide();
+        $('.addNota').hide();
     })
     $('#btnClassGroup').click(function(){
         $('.createGroup').hide();
         $('.createClass').hide();
         $('.enrollClass').hide();
         $('.addClassGroup').show();
+        $('.addNota').hide();
+    })
+    $('#btnAddNota').click(function(){
+        $('.createGroup').hide();
+        $('.createClass').hide();
+        $('.enrollClass').hide();
+        $('.addClassGroup').hide();
+        $('.addNota').show();
+        $('#formAgregarNota').hide();
     })
 })
-let arrStudent=[]//arreglo estdudiantes
+const arrStudent=[]//arreglo estdudiantes
 const clas=[]//Arreglo de las materias
 const group=[]//arreglo de los grupos
 const assclasstogroup=[]//arreglo de asignacion de materias a grupos
 const cursosMatr=[]//arreglo cursos matriculados
+const notas=[]//arreglo notas
 const form=document.querySelector('#formMateria').addEventListener("submit", function(event){
     event.preventDefault();
     let transform=new FormData(form)
@@ -45,15 +60,54 @@ function formulario(nform){
         document.querySelector(nform).reset();
     })
 }
-
+const form1=document.querySelector('#formGroup').addEventListener("submit", function(event){
+    event.preventDefault();
+    let transform=new FormData(form)
+    document.getElementById('formGroup').reset();
+})
+//recuperar informacion de local storage
 var myarraytemp=JSON.parse(localStorage.getItem("arrayClass"))
-Array.prototype.push.apply(clas,myarraytemp)
+Array.prototype.push.apply(clas,myarraytemp)//arrglo materias
 
 var b=JSON.parse(localStorage.getItem("arrayclasstogroup"))
-Array.prototype.push.apply(assclasstogroup,b)
+Array.prototype.push.apply(assclasstogroup,b)//arreglo agregar materias a grupo
 
 var tempLoc=JSON.parse(localStorage.getItem("arrayGroup"))
-Array.prototype.push.apply(group,tempLoc)
+Array.prototype.push.apply(group,tempLoc)//arreglo grupos
+
+var tempcurMatr=JSON.parse(localStorage.getItem("arraycursosmatriculados"))
+Array.prototype.push.apply(cursosMatr,tempcurMatr)//arrgelo cursos matrciulados
+
+let atemp=JSON.parse(localStorage.getItem("array"))
+Array.prototype.push.apply(arrStudent,atemp)//arreglo estudiantes
+
+let selectIDStudent
+function getStudent(){
+    selectIDStudent=document.querySelector("#cmbStudent").value
+    return selectIDStudent;
+}
+let selectClass
+function getClassInscribir(){
+    selectClass=document.querySelector("#cmbClass").value
+    return selectClass;
+}
+
+document.querySelector("#cmbClass").addEventListener("change", function (){
+    document.querySelector("#cmbClass").value
+})
+document.querySelector("#cmbGroup").addEventListener("change", function (){
+     document.querySelector("#cmbGroup").value
+})
+document.querySelector("#cmbGroupAssig").addEventListener("change", function (){
+    document.querySelector("#cmbGroupAssig").value
+})
+document.querySelector("#cmbClassAssig").addEventListener("change", function (){
+     document.querySelector("#cmbClassAssig").value
+})
+// document.querySelector("#cmbClass").addEventListener("change", function (){
+//     document.querySelector("#cmbClass").value
+// })
+
 //Modulo crear Clase
 document.querySelector("#addClass").addEventListener("click",function(){
     let clase=document.querySelector("#txtClass").value
@@ -70,17 +124,8 @@ document.querySelector("#addClass").addEventListener("click",function(){
     let i=new addClass(clase)
     i.addMaterias()
 });
-
 //Modulo crear Grupo
-const form1=document.querySelector('#formGroup').addEventListener("submit", function(event){
-    event.preventDefault();
-    let transform=new FormData(form)
-    document.getElementById('formGroup').reset();
-})
-//formulario("formGroup")
-
 document.querySelector("#addGroup").addEventListener("click",function(){
-    
     let grupo=document.querySelector("#txtGrupo").value
     class Group{
         constructor(grupo){
@@ -93,25 +138,22 @@ document.querySelector("#addGroup").addEventListener("click",function(){
         }
     }
     let j=new Group(grupo)
-    j.addGroup()
-    
+    j.addGroup() 
 });
 //Modulo Inscribir materias
-
-let atemp=JSON.parse(localStorage.getItem("array"))
-Array.prototype.push.apply(arrStudent,atemp)
-
-function limpiar(objclear){
-    for (let i = ("#"+objclear).length; i >= 0; i--) {
-        document.getElementById(objclear).remove(i);
-    }
+function borarnom(){
+    d=document.getElementById("lblname")
+    e=document.getElementById("lblN")
+    if(!d){
+    }else{
+        nodos=e.parentNode
+        nodo=d.parentNode
+        nodo.removeChild(d)
+        nodos.removeChild(e)
+    }   
 }
 document.querySelector("#cmbStudent").addEventListener("change", function(){
-    d=document.getElementById("lblname")
-    if(!d){
-
-    }else{nodo=d.parentNode
-        nodo.removeChild(d)}      
+  borarnom()
 })
 document.querySelector("#btnEnrollClass").addEventListener("click", function(event){
     limpiar("cmbGroup")
@@ -131,14 +173,16 @@ document.querySelector("#btnEnrollClass").addEventListener("click", function(eve
 })
 
 document.querySelector("#cmbGroup").addEventListener("change", function(){
+    limpiar("cmbClass")
+    borarnom()
     let selectGrou=document.querySelector("#cmbGroup").value
     let estudiante=selectIDStudent
     for(var h=0;h<arrStudent.length;h++){
         if(estudiante==arrStudent[h].ID){
             document.querySelector("#namestudent").innerHTML +=
             `
-            <b>Nombre Estudiante</b><br>
-            <p id="lblname" name="${arrStudent[h].Name}">${arrStudent[h].Name}</p>
+            <b id="lblN">Nombre Estudiante</b>
+            <p id="lblname">${arrStudent[h].Name}</p>
             `
         }
     }  
@@ -149,27 +193,13 @@ document.querySelector("#cmbGroup").addEventListener("change", function(){
             <option value="${assclasstogroup[h].Clase}">${assclasstogroup[h].Clase}</option>
             `
         }
-    }      
-})
-
-let selectIDStudent
-function getStudent(){
-    selectIDStudent=document.querySelector("#cmbStudent").value
-    return selectIDStudent;
-}
-
-document.querySelector("#cmbClass").addEventListener("change", function (){
-    document.querySelector("#cmbClass").value
-})
-document.querySelector("#cmbGroup").addEventListener("change", function (){
-     document.querySelector("#cmbGroup").value
+    }   
 })
 
 document.querySelector("#btnAddMate").addEventListener("click", function(){
     let NombreEstud=document.querySelector("#lblname").innerHTML
     let IDestudiante=selectIDStudent
-    limpiar("cmbClass")
-    let clase=document.querySelector("#cmbClass").value
+    let clase=selectClass
     let grupo=document.querySelector("#cmbGroup").value
     class inscribircurso{
         constructor(NombreEstud, IDestudiante, clase, grupo){
@@ -178,14 +208,14 @@ document.querySelector("#btnAddMate").addEventListener("click", function(){
             this.clase=clase
             this.grupo=grupo
         }
-        matricularcursos(NombreEstud, IDestudiante, clase,grupo){
+        matricularcursos(NombreEstud, IDestudiante, clase, grupo){
             cursosMatr.push({
                 NDocumento:this.IDestudiante, Estudiante:this.NombreEstud, Clase:this.clase, Grupo:this.grupo
             })
             const jsonArray = JSON.stringify(cursosMatr);
             localStorage.setItem('arraycursosmatriculados', jsonArray); 
         }
-    }let inscur=new inscribircurso(NombreEstud, IDestudiante, clase,grupo)
+    }let inscur=new inscribircurso(NombreEstud, IDestudiante, clase, grupo)
     inscur.matricularcursos()
     formulario("#formEnrollClass")
 })
@@ -207,12 +237,6 @@ document.querySelector("#btnClassGroup").addEventListener("click",function(){
     }
 })
 
-document.querySelector("#cmbGroupAssig").addEventListener("change", function (){
-    document.querySelector("#cmbGroupAssig").value
-})
-document.querySelector("#cmbClassAssig").addEventListener("change", function (){
-     document.querySelector("#cmbClassAssig").value
-})
 document.querySelector("#btnAddClasstoGroup").addEventListener("click",function(){
     let clase=document.querySelector("#cmbClassAssig").value
     let grupo=document.querySelector("#cmbGroupAssig").value
@@ -231,4 +255,59 @@ document.querySelector("#btnAddClasstoGroup").addEventListener("click",function(
     }let p=new classtogroup(grupo, clase)
     p.addClasstoGroup()
     formulario("#fomraddClassGroup")
+})
+function limpiar(objclear){
+    for (let i = ("#"+objclear).length; i >= 0; i--) {
+        document.getElementById(objclear).remove(i);
+    }
+}btnbuscar
+//Modulo agregar nota
+document.querySelector("#btnbuscar").addEventListener("click",function(){
+    let IdFind=document.querySelector("#txtID").value;
+    if(IdFind!==""){
+        for(var j=0;j<arrStudent.length;j++){
+            if(IdFind==arrStudent[j].ID){
+                document.querySelector("#infoEstudiante").innerHTML+=
+                `
+                <label value"${arrStudent[j].ID}">Numero ID: ${arrStudent[j].ID}</label>
+                <label id="lblnomb" value"${arrStudent[j].Name}">Nombre Estudiante: ${arrStudent[j].Name}</label>
+                `
+            }
+        }
+        for(var i=0;i<cursosMatr.length;i++){
+            if(IdFind==cursosMatr[i].NDocumento){
+                document.querySelector("#cmbMateria").innerHTML+=
+                `
+                <option value="${cursosMatr[i].Clase}">${cursosMatr[i].Clase}</option>
+                `
+            }
+        }
+        $('#formAgregarNota').show();
+        let nomb=document.querySelector("#lblnomb").value;
+        let gr=document.querySelector("#cmbMateria").value;
+        let mate=document.querySelector("#cmbMateria").value;
+        let cal=document.querySelector("#txtNota").value;
+        class calificaciones{
+            
+            constructor(IdFind,nomb,gr, mate, cal){
+                this.IdFind=IdFind
+                this.nomb=nomb
+                this.gr=gr
+                this.mate=mate
+                this.cal=cal
+            }
+            addcalificaciones(IdFind,nomb,gr, mate, cal){
+                notas.push({          
+                    Id:this.IdFind, nomb:this.Nombre, Grupo:this.gr, Materia:this.mate, this.cal:Calificacion
+            })
+            const jsonArray = JSON.stringify(notas);
+            localStorage.setItem('arrayNotas', jsonArray); 
+            }
+        }
+        let ca=new calificaciones(IdFind,nomb,gr, mate, cal)
+        ca.addcalificaciones()
+    }else{
+        alert("Ingrese el ID de estudiante")
+    }
+    formulario("#formAgregarNota")
 })

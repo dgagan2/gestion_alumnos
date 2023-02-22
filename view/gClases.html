@@ -31,11 +31,14 @@
             <button class="nav-link text-white" id="btnCreateGroup" aria-current="page">Crear Grupo</button>
           </li>
           <li>
+            <button class="nav-link text-white" id="btnClassGroup" aria-current="page">Asignar Materias a Grupo</button>
+          </li>
+          <li>
             <button class="nav-link text-white" id="btnEnrollClass" aria-current="page">Inscribir Materias</button>
           </li>
           <li>
-            <button class="nav-link text-white" id="btnClassGroup" aria-current="page">Asignar Materias a Grupo</button>
-          </li>
+            <button class="nav-link text-white" id="btnAddNota" aria-current="page">Agregar Calificacion</button>
+          </li>         
         </ul>
       </div>
       <div class="b-example-divider"></div>
@@ -79,7 +82,7 @@
           </div>
           <div class="col-6 col-xs-12 col-sm-12">
             <label for="form-label">Nombre Materia</label>
-            <select class="form-select" onclick="" id="cmbClass">
+            <select class="form-select" id="cmbClass" onclick="getClassInscribir()">
               <option selected disabled value="">Selecione</option>
             </select>
           </div>
@@ -106,6 +109,31 @@
             <button class="btn btn-primary" type="submit" id="btnAddClasstoGroup">Inscribir</button>
           </div>
         </form>>
+      </section>
+      <section class="addNota">
+        <div class="row g-3 needs-validation" id="formBuscar">
+          <div class="col-6 col-xs-12 col-sm-12">
+            <label for="form-label">Ingrese ID</label>
+            <input type="text" id="txtID">
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12">
+            <button class="btn btn-primary" type="submit" id="btnbuscar" >Buscar</button>
+          </div>
+        </div>
+        <div class="col-8 col-xs-12 col-sm-12" id="infoEstudiante"></div>
+        <form class="row g-3 needs-validation" id="formAgregarNota">
+          <div col-6 col-xs-12 col-sm-12 style="display: grid;">
+            <label for="">Seleccione la materia</label>
+            <select class="form-select" id="cmbMateria">
+              <option selected disabled value="">Selecione</option>
+            </select>
+            <label for="">Ingrese la Nota</label>
+            <input name="txtNota" id="txtNota">
+          </div>
+          <div col-6 col-xs-12 col-sm-12>
+            <button class="btn btn-primary" type="submit" id="btnAddNota" >Agregar Nota</button>
+          </div>
+        </form>
       </section>
     </main>
     

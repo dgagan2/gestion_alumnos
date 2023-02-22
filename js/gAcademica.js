@@ -20,5 +20,4 @@ opcion.addEventListener('change', ()=>{
     $('.container-prom-grupo').show();
     $('.container-prom-alumno').hide();
   }
-
 })
