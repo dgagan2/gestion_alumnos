@@ -81,6 +81,9 @@ Array.prototype.push.apply(cursosMatr,tempcurMatr)//arrgelo cursos matrciulados
 let atemp=JSON.parse(localStorage.getItem("array"))
 Array.prototype.push.apply(arrStudent,atemp)//arreglo estudiantes
 
+let Ntemp=JSON.parse(localStorage.getItem("arrayNotas"))
+Array.prototype.push.apply(notas,Ntemp)//arreglo notas
+
 let selectIDStudent
 function getStudent(){
     selectIDStudent=document.querySelector("#cmbStudent").value
@@ -104,9 +107,9 @@ document.querySelector("#cmbGroupAssig").addEventListener("change", function (){
 document.querySelector("#cmbClassAssig").addEventListener("change", function (){
      document.querySelector("#cmbClassAssig").value
 })
-// document.querySelector("#cmbClass").addEventListener("change", function (){
-//     document.querySelector("#cmbClass").value
-// })
+document.querySelector("#cmbMateria").addEventListener("change", function (){
+    document.querySelector("#cmbMateria").value
+})
 
 //Modulo crear Clase
 document.querySelector("#addClass").addEventListener("click",function(){
@@ -151,6 +154,17 @@ function borarnom(){
         nodo.removeChild(d)
         nodos.removeChild(e)
     }   
+}
+function borarNomNotas(){
+    d=document.getElementById("lblidEst")
+    e=document.getElementById("lblnomb")
+    if(!d){
+    }else{
+        nodos=e.parentNode
+        nodo=d.parentNode
+        nodo.removeChild(d)
+        nodos.removeChild(e)
+    } 
 }
 document.querySelector("#cmbStudent").addEventListener("change", function(){
   borarnom()
@@ -262,16 +276,19 @@ function limpiar(objclear){
     }
 }btnbuscar
 //Modulo agregar nota
+let nombreSt
 document.querySelector("#btnbuscar").addEventListener("click",function(){
+    //borarNomNotas()
     let IdFind=document.querySelector("#txtID").value;
     if(IdFind!==""){
         for(var j=0;j<arrStudent.length;j++){
             if(IdFind==arrStudent[j].ID){
                 document.querySelector("#infoEstudiante").innerHTML+=
                 `
-                <label value"${arrStudent[j].ID}">Numero ID: ${arrStudent[j].ID}</label>
-                <label id="lblnomb" value"${arrStudent[j].Name}">Nombre Estudiante: ${arrStudent[j].Name}</label>
+                <label id="lblidEst" value="${arrStudent[j].ID}">Numero ID: ${arrStudent[j].ID}</label>
+                <label id="lblnomb" value="${arrStudent[j].Name}">Nombre Estudiante: ${arrStudent[j].Name}</label>
                 `
+                nombreSt= `${arrStudent[j].Name} `
             }
         }
         for(var i=0;i<cursosMatr.length;i++){
@@ -281,33 +298,41 @@ document.querySelector("#btnbuscar").addEventListener("click",function(){
                 <option value="${cursosMatr[i].Clase}">${cursosMatr[i].Clase}</option>
                 `
             }
-        }
-        $('#formAgregarNota').show();
-        let nomb=document.querySelector("#lblnomb").value;
-        let gr=document.querySelector("#cmbMateria").value;
-        let mate=document.querySelector("#cmbMateria").value;
-        let cal=document.querySelector("#txtNota").value;
-        class calificaciones{
-            
-            constructor(IdFind,nomb,gr, mate, cal){
-                this.IdFind=IdFind
-                this.nomb=nomb
-                this.gr=gr
-                this.mate=mate
-                this.cal=cal
-            }
-            addcalificaciones(IdFind,nomb,gr, mate, cal){
-                notas.push({          
-                    Id:this.IdFind, nomb:this.Nombre, Grupo:this.gr, Materia:this.mate, this.cal:Calificacion
-            })
-            const jsonArray = JSON.stringify(notas);
-            localStorage.setItem('arrayNotas', jsonArray); 
-            }
-        }
-        let ca=new calificaciones(IdFind,nomb,gr, mate, cal)
-        ca.addcalificaciones()
+        }$('#formAgregarNota').show();
     }else{
         alert("Ingrese el ID de estudiante")
     }
     formulario("#formAgregarNota")
+})
+document.querySelector("#btnAddNotaFinal").addEventListener("click",function(){
+    let IdFind=document.querySelector("#txtID").value;
+    mate=document.getElementById("cmbMateria").value;
+    let k
+    assclasstogroup.forEach(function(x){
+        if(x.Clase==mate){
+            k=x.Grupo 
+        }
+    })
+    nomb=nombreSt//se cambio
+    let gr=k        
+    cal=document.getElementById("txtNota").value
+    console.log("ID:"+IdFind,"Nombre"+nomb, "Grupo"+gr, "materia"+mate, "calificaion"+cal)
+    class calificaciones{
+        constructor(IdFind,nomb,gr, mate, cal){
+            this.IdFind=IdFind
+            this.nomb=nomb
+            this.gr=gr
+            this.mate=mate
+            this.cal=cal
+        }
+        addcalificaciones(IdFind,nomb,gr, mate, cal){
+            notas.push({          
+                Id:this.IdFind, Nombre:this.nomb, Grupo:this.gr, Materia:this.mate, Calificacion:this.cal
+            })
+            const nArray = JSON.stringify(notas);
+            localStorage.setItem('arrayNotas', nArray); 
+        }
+    }
+    let ca=new calificaciones(IdFind,nomb,gr,mate,cal)
+    ca.addcalificaciones()
 })
