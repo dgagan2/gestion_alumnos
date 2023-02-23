@@ -43,7 +43,7 @@
         </div>
          <!--Tabla de alumnos-->
         <div class="container-prom-alumno" style="display: none;">
-          <div class="row g-3 needs-validation">
+          <form class="row g-3 needs-validation" id="formAlu">
             <div class="col-12">
               <label for="form-label">Ingrese el numero de documento del alumno</label>
               <input type="text" form="form-control" id="txtId">
@@ -51,8 +51,8 @@
             <div class="col-12">
               <button class="btn btn-primary" type="submit" id="btnfindID">Buscar</button>
             </div>
-          </div>
-          <table class="table table-striped" id="tblalumnos">
+          </form>
+          <table class="table table-striped" id="tblalumnos" style="display: none;">
             <p id="promedio"></p>
             <thead>
               <tr>
@@ -78,12 +78,7 @@
                 <th scope="col">Promedio</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
+            <tbody id="tblgrupos">
             </tbody>
           </table>
         </div>
