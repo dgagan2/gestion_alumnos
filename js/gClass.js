@@ -3,7 +3,6 @@ $(function(){
     $('.enrollClass').hide();
     $('.addClassGroup').hide();
     $('.addNota').hide();
-    
     $('#btnCreateGroup').click(function(){
         $('.createGroup').show();
         $('.createClass').hide();
@@ -232,6 +231,7 @@ document.querySelector("#btnAddMate").addEventListener("click", function(){
     }let inscur=new inscribircurso(NombreEstud, IDestudiante, clase, grupo)
     inscur.matricularcursos()
     formulario("#formEnrollClass")
+    //borarnom()
 })
 //Asignar materias a grupo
 document.querySelector("#btnClassGroup").addEventListener("click",function(){
@@ -274,10 +274,11 @@ function limpiar(objclear){
     for (let i = ("#"+objclear).length; i >= 0; i--) {
         document.getElementById(objclear).remove(i);
     }
-}btnbuscar
+}
 //Modulo agregar nota
 let nombreSt
 document.querySelector("#btnbuscar").addEventListener("click",function(){
+    // document.querySelector("#txtID").innerHTML=""
     //borarNomNotas()
     let IdFind=document.querySelector("#txtID").value;
     if(IdFind!==""){
@@ -316,7 +317,6 @@ document.querySelector("#btnAddNotaFinal").addEventListener("click",function(){
     nomb=nombreSt//se cambio
     let gr=k        
     cal=document.getElementById("txtNota").value
-    console.log("ID:"+IdFind,"Nombre"+nomb, "Grupo"+gr, "materia"+mate, "calificaion"+cal)
     class calificaciones{
         constructor(IdFind,nomb,gr, mate, cal){
             this.IdFind=IdFind
@@ -335,4 +335,5 @@ document.querySelector("#btnAddNotaFinal").addEventListener("click",function(){
     }
     let ca=new calificaciones(IdFind,nomb,gr,mate,cal)
     ca.addcalificaciones()
+    borarNomNotas()
 })

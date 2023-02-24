@@ -6,18 +6,22 @@ $(function(){
       $('.promedios').show();
     })
     $('#btnLEstudiantes').click(function(){
-      $('.materias').show();
+      $('.materias').show(insertarMaterias());
       $('.promedios').hide();
     })
 })
+// import{clas} from "./gClass.js"
 const form=document.querySelector('#formAlu').addEventListener("submit", function(event){
   event.preventDefault();
-  let transform=new FormData(form)
-  
+  let transform=new FormData(form)  
 })
 const notas=[]//arreglo notas
 let Ntemp=JSON.parse(localStorage.getItem("arrayNotas"))
 Array.prototype.push.apply(notas,Ntemp)//arreglo notas
+
+const clas=[]//Arreglo de las materias
+var myarraytemp=JSON.parse(localStorage.getItem("arrayClass"))
+Array.prototype.push.apply(clas,myarraytemp)//arrglo materias
 
 const assclasstogroup=[]//arreglo de asignacion de materias a grupos
 var b=JSON.parse(localStorage.getItem("arrayclasstogroup"))
@@ -55,7 +59,6 @@ document.querySelector("#btnfindID").addEventListener("click", function(){
   let IdFind=document.querySelector("#txtId").value;
   if(IdFind!==""){
     for(var j=0;j<notas.length;j++){
-
         if(IdFind==notas[j].Id){
           total=notas[j].Calificacion;
           arrtemp.push(total)
@@ -77,7 +80,6 @@ document.querySelector("#btnfindID").addEventListener("click", function(){
         // arrtemp.forEach(myFunction);
         // function myFunction(item) {sum += parseFloat(item);}
         $('#tblalumnos').show(c()); 
-        
     }
   }else{
     alert("Imgrese el ID del estudiante")
@@ -110,27 +112,40 @@ function tablaProGrupo(){
       if(assclasstogroup[j].Grupo == notas[i].Grupo){
         savegr=notas[i].Grupo
         totalG=notas[i].Calificacion
-        totalProGrupo.push({Grupo:savegr,Calificacion:totalG})
+        saveC=assclasstogroup[j].Clase
+        totalProGrupo.push({Grupo:savegr,Materia:saveC,Calificacion:totalG})
       }else{
-        alert("nada")
+        
       }
     }
     }obtenerPor()
-    
 }
+let temtalProGrupo=[]
 function obtenerPor(){
+  let sumar=0
+  console.log(totalProGrupo)
   for(var j=0;j<totalProGrupo.length;j++){
-    let contador=0
     if(totalProGrupo[j].Grupo == totalProGrupo[j].Grupo){
-      
-      alert("hola"+contador)
-      let sumaCali=0
       let h=parseFloat(totalProGrupo[j].Calificacion)
-      let sumaCali2=h+sumaCali
-      console.log(contador,sumaCali2)
+      sumar=parseFloat(sumar+h)
+      console.log(sumar)
     }else{
-
+      temtalProGrupo.push({Grupo:savegr,Materia:saveC,Calificacion:sumar})
     }
-
   }
 }
+function insertarMaterias(){
+  for(var j=0;j<clas.length;j++){
+    document.querySelector("#tblmaterias").innerHTML+=
+        `
+        <tbody id="tblmaterias">
+            <tr>
+              <td>${assclasstogroup[j].Grupo}</td>
+              <td>${assclasstogroup[j].Clase}</td>
+              <td>${clas[j]}</td>
+            </tr>
+        </tbody>
+        `
+  }
+}
+  
