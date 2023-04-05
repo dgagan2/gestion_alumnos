@@ -1,0 +1,58 @@
+<form id="formPeople" class="d-flex flex-column mt-3">
+    <div>
+        <label for="txtIdNumber">Numero de Documento</label>
+        <input type="text" id="txtIdNumber" name="txtIdNumber">
+        <div class="validateIdNumber">
+        </div>
+    </div>
+    <div>
+        <label for="txtName">Nombre Completo</label>
+        <input type="text" id="txtName" name="txtName">
+        <div class="validateName">
+        </div>
+    </div>
+    <div>
+        <label for="txtAge">Edad</label>
+        <input type="number" id="txtAge" name="txtAge">
+        <div class="validateAge">
+        </div>
+    </div>
+    <div>
+        <label for="cmbSex">Genero</label>
+        <select  name="cmbSex" id="cmbSex">
+            <option selected disabled value>Selecione</option>
+            <option value="M" name="M">M</option>
+            <option value="F" name="F">F</option>
+            <option value="No Binario" name="No Binario">No Binario</option>
+        </select>
+    </div>
+    <div>
+        <label for="cmbBloodType">Tipo de Sangre</label>
+        <select  name="cmbBloodType" id="cmbBloodType">
+            <option selected disabled value>Selecione</option>
+            <option value="O+" name="O+">O+</option>
+            <option value="O-" name="O-">O-</option>
+            <option value="A+" name="A+">A+</option>
+            <option value="A-" name="A-">A-</option>
+            <option value="B+" name="B+">B+</option>
+            <option value="B-" name="B-">B-</option>
+            <option value="AB" name="AB">AB</option>
+        </select>
+    </div>
+    <div>
+        <label for="txtResidenceCity">Ciudad de Residencia</label>
+        <input type="text" id="txtResidenceCity" name="txtResidenceCity">
+        <div class="validateResidenceCity">
+        </div>
+    </div>
+    <div>
+        <label for="txtEmail">Correo Electronico</label>
+        <input id="txtEmail" type="text" name="txtEmail">
+        <div class="validateEmail">
+        </div>
+    </div>
+    <div id="error"></div>
+    <div class="">
+        <button type="submit" id="btnAddPeople" class="btn btn-secondary btn-lg w-100 mt-3">Agregar</button>
+    </div>
+</form>

@@ -1,0 +1,45 @@
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+.b-example-divider {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: -webkit-fill-available;
+    overflow-x: auto;
+    overflow: auto;
+}
+
+label,
+input,
+select {
+    height: 30px;
+    width: 40vh;
+    margin: 3px;
+}
+form img {
+
+    width: 15px;
+    right: 65px;
+    bottom: 35px;
+
+}
+.validateIdNumber{
+    position: relative;
+}
+@media (max-width:640px) {
+    #menu {
+        width: 210px !important;
+    }
+}
