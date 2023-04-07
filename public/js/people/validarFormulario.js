@@ -12,9 +12,9 @@ const expresiones = {
     txtResidenceCity: /^[a-zA-ZÁ-ÿ\s]{4,20}$/,
     txtEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
-function borrarValidaciones() {
-    const texto = document.querySelector("#inputIncorrecto")
-    const imagen = document.querySelector("#input__incorrecto")
+function borrarValidaciones(text,image) {
+    const texto = document.querySelector(text)
+    const imagen = document.querySelector(image)
     if (!imagen) {
 
     } else {
@@ -24,8 +24,8 @@ function borrarValidaciones() {
         padreT.removeChild(texto)
     }
 }
-function borrarMensajeFinal() {
-    const texto = document.querySelector("#errorFinal")
+function borrarMensajeFinal(valorBorrar) {
+    const texto = document.querySelector(valorBorrar)
     if (!texto) {
 
     } else {
@@ -39,17 +39,19 @@ function MensajeFinal() {
     valide la información</p>`
 }
 const input_ok = (b) => {
-    borrarValidaciones()
+    borrarValidaciones("#inputIncorrecto", "#input__incorrecto")
+    borrarMensajeFinal("#input__correcto")
     document.querySelector(b).innerHTML += `<img src="../img/cheque.png" id="input__correcto"></img>`
 
 }
 const input_wrong = (b) => {
+    borrarMensajeFinal("#input__correcto")
+    borrarValidaciones("#inputIncorrecto", "#input__incorrecto")
     document.querySelector(b).innerHTML += `<img src="../../img/incorrecto.png" id="input__incorrecto"></img>
     <p class="text-danger fs-6" id="inputIncorrecto">*El campo no esta bien diligenciado</p>`
 }
 
 const validarCampos = (e) => {
-    console.log(e.target.value)
     switch (e.target.name) {
         case "txtIdNumber":
             if (expresiones.txtIdNumber.test(e.target.value)) {
