@@ -1,12 +1,15 @@
 import dotenv from "dotenv"
 dotenv.config();
-import mysql2 from 'mysql2'
-const mysql = mysql2
+import {createPool} from 'mysql2/promise'
 
-const connection =  mysql.createConnection(process.env.DATABASE_URL)
-console.log('Connected to PlanetScale!')
-//connection.end()
+const pool=createPool({
+    host:'aws.connect.psdb.cloud',
+    user:'tyfvdegotslitdp21djy',
+    password:'pscale_pw_CEB2DXbu84MVpNk9JE7p5jUcO74wSr08yACvcoL7dqE',
+    port: 3306,
+    database:'academicplatform',
+    ssl:{rejectUnauthorized:false}
+})
 
-
-export {connection}
+export {pool}
 

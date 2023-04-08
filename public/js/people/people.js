@@ -1,39 +1,18 @@
 $(function () {
     $('#findPeople').hide();
     $('#btnCreateStudent').click(function () {
-        $('#form').show();
+        $('#addPeople').show();
         $('#findPeople').hide();
     })
     $('#btnListStudent').click(function () {
-        $('#form').hide();
         $('#findPeople').show();
+        $('#addPeople').hide();
     })
 })
 import { validarAllInputs, borrarMensajeFinal, MensajeFinal } from "./validarFormulario.js";
 
-const form = document.getElementById("formPeople")
-
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    borrarMensajeFinal("#errorFinal");
-    const userData = eventToUserData(event)
-    if (!validarAllInputs()) {
-        MensajeFinal();
-    } else {
-        fetch(`http://127.0.0.1:9000/people`,{
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userData)
-        }).then(res => res.json())
-            .then(res => console.log(res))
-            .catch (err => console.error(err));
-
-        borrarMensajeFinal("#input__correcto")
-        document.getElementById('formPeople').reset();
-    }
-})
+const formAddPerson = document.getElementById("formPeople");
+const formFindPeople = document.getElementById("formFindPeople");
 
 function eventToUserData(event) {
     const elements = event.target.elements;
@@ -54,3 +33,36 @@ function eventToUserData(event) {
         email: email
     }
 }
+
+formAddPerson.addEventListener("submit", (event) => {
+    event.preventDefault();
+    borrarMensajeFinal("#errorFinal");
+    const userData = eventToUserData(event);
+    if (!validarAllInputs()) {
+        MensajeFinal();
+    } else {
+        fetch(`http://127.0.0.1:9000/people`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        }).then(res => res.json())
+          .then(res => console.log(res))
+          .catch (err => console.error(err));
+        borrarMensajeFinal("#input__correcto");
+        document.getElementById('formPeople').reset();
+    }
+})
+
+formFindPeople.addEventListener("submit", (event)=>{
+    event.preventDefault();
+    const id=event.target.txtId.value;
+    formFindPeople.reset();
+    fetch(`http://127.0.0.1:9000/people/id/${id}`)
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
+})
+
+

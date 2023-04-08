@@ -10,15 +10,28 @@ const mostarPersonas = (req, res) => {
     res.render("people");
 }
 
-const addPeople=(req,res)=>{
+const addPeople= async (req,res)=>{
    try {
     const data=req.body
-    servicePeople.createPerson(data)    
-    res.status(202).json({message:"Todo ok"})
+    const dataRes=await servicePeople.createPerson(data) 
+    if (dataRes == true) {
+        res.status(404).send("El usuario ya existe")
+        } else { 
+        res.status(202).json({ message: "Persona agregada" })
+        }
    } catch (error) {
-    res.status(404).json()
+        res.status(404).json({error})
    }
      
 }
+const queryPerson=async (req,res)=>{
+    try {
+        const data=req.params.id
+        const getdata=await servicePeople.queryPerson(data)
+        res.status(202).json(getdata)
+    } catch (error) {
+        res.status(404).json({message:"EL id ingresado no existe", error})
+    }
+}
 
-export{mostarPersonas, addPeople}
+export { mostarPersonas, addPeople, queryPerson}
